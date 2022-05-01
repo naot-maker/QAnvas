@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_riverpod: ^1.0.3
   hooks_riverpod: ^1.0.3
+  flutter_hooks: ^0.18.3
   state_notifier: ^0.7.2+1
 
   firebase_core: ^1.15.0
@@ -60,22 +61,22 @@ dependencies:
 
   flutter_settings_ui: ^2.0.1
 
-  animated_splash_screen: ^1.2.0
-
-dev_dependencies:
-
   flutter_native_splash: ^2.1.6
 
+flutter_native_splash:
+  image: images/QAnvas_logo.png
+  android: true
+  ios: true
+  color: "#d9d9d9"
+
+dev_dependencies:
+  pedantic_mono: ^1.18.0
   flutter_test:
     sdk: flutter
 
   hive_generator: ^1.1.2
   build_runner:
   freezed: ^2.0.2
-
-flutter_native_splash:
-  image: ""
-  color:
 
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -97,8 +98,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - images/QAnvas_logo.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
