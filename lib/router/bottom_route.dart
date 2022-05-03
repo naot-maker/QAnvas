@@ -94,6 +94,7 @@ class BottomRoute extends HookConsumerWidget{
         unselectedFontSize: 10,
         selectedFontSize: 10,
         type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
       )
     );
   }
