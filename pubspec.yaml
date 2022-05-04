@@ -66,10 +66,10 @@ dependencies:
   flutter_simple_treeview: ^3.0.1
 
 flutter_native_splash:
-  image: assets/images/QAnvas_logo.png
+  image: assets/images/QAnvas_splash2.png
   android: true
   ios: true
-  color: "#d9d9d9"
+  color: "#FFFFFF"
 
 dev_dependencies:
   pedantic_mono: ^1.18.0
@@ -102,6 +102,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/QAnvas_logo.png
+    - assets/images/QAnvas_splash.png
+    - assets/images/QAnvas_splash2.png
     - assets/images/QAnvas_title.png
     - assets/images/sibouko.png
     - assets/images/kokugo.png

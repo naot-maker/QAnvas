@@ -47,7 +47,7 @@ class SearchScreen extends StatelessWidget{
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height:  height * 0.08),
+            SizedBox(height:  height * 0.06),
             //サーチテキストフィールド
             Container(
               width: weight * 0.95,
@@ -77,27 +77,27 @@ class SearchScreen extends StatelessWidget{
                 ),
               ),
             ),
-            SizedBox(height:  height * 0.05),
+            SizedBox(height: height * 0.03),
+            const Divider(
+              height: 0,
+              thickness: 1,
+            ),
             Container(
-              width: weight * 0.95,
-              margin: EdgeInsets.all(weight * 0.04),
-                child: InputDecorator(
-                  decoration: InputDecoration(
-                  labelText: "カテゴリー",
-                  labelStyle: const TextStyle(fontSize:  22),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      )
-                  ),
-                  child: ListView.separated(
+              alignment: Alignment.topLeft,
+              margin: EdgeInsets.all(weight * 0.02),
+              child:  const Text("カテゴリー"),
+            ),
+            ListView.separated(
                     shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (BuildContext context, int index){
                         return ListTile(
                           dense: true,
-                          leading: const Icon(
-                            Icons.face,
-                            size: 30,
+                          leading: CircleAvatar(
+                            child: ClipOval(
+                              child: Image.asset(iconlist[index]),
+                            ),
+                            backgroundColor: Colors.white,
                           ),
                           title: Text(categorylist[index],
                             style: const TextStyle(
@@ -113,19 +113,18 @@ class SearchScreen extends StatelessWidget{
                         return Divider(
                           height: height * 0.005,
                           indent: weight * 0.17,
-                          thickness: 0.8,
+                          endIndent: weight * 0.1,
+                          thickness: 1,
                         );
                       },
                       itemCount: iconlist.length
-                  ),
-                ),
             ),
           ]
-        )
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          print(iconlist.length);
+          GoRouter.of(context).go('/QuestionAdd');
         },
         label:  const Text("質問する"),
         backgroundColor: Colors.red,
