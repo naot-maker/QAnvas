@@ -51,7 +51,7 @@ dependencies:
 
   image_cropper: ^2.0.0
 
-  auto_size_text: ^3.0.0
+  auto_size_text_field: ^1.0.1
 
   flutter_colorpicker: ^1.0.3
 
@@ -64,6 +64,8 @@ dependencies:
   flutter_native_splash: ^2.1.6
 
   flutter_simple_treeview: ^3.0.1
+
+  spring_button: ^2.0.0
 
 flutter_native_splash:
   image: assets/images/QAnvas_splash2.png

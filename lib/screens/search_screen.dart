@@ -6,15 +6,21 @@ import 'package:flutter_simple_treeview/flutter_simple_treeview.dart';
 //クラスインポート
 import 'package:qanvas/common/common_widget.dart';
 
-class SearchScreen extends StatelessWidget{
+final searchstateprovider = StateProvider.autoDispose((ref){
+  return TextEditingController(text: "");
+});
+
+class SearchScreen extends HookConsumerWidget{
   const SearchScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
 
     //端末ごとの高さと横幅を取得
     final weight = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+
+    final searchController = ref.watch(searchstateprovider);
 
     final iconlist = [
       "assets/images/sibouko.png",
@@ -39,87 +45,104 @@ class SearchScreen extends StatelessWidget{
     ];
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(height * 0.06),
-        child: const AppBar_Widget(),
+      appBar: AppBar(
+        title: SizedBox(
+          width: weight * 0.4,
+          height: height * 0.07,
+          child: Image.asset("assets/images/QAnvas_title.png"),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            SizedBox(height:  height * 0.06),
-            //サーチテキストフィールド
-            Container(
-              width: weight * 0.95,
-              height:  height * 0.07,
-              color: Colors.white,
-              margin: EdgeInsets.all(weight * 0.05),
-              child: TextFormField(
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  hintText: '質問、ノートを検索',
-                  hintStyle: const TextStyle(fontSize: 17, color: Colors.black26),
-                  fillColor: Colors.grey[400],
-                  filled: true,
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: const BorderSide(
-                      color: Colors.red
+      body: GestureDetector(
+        onTap: (){
+          final FocusScopeNode currentfocus = FocusScope.of(context);
+          if(!currentfocus.hasPrimaryFocus && currentfocus.hasFocus){
+            FocusManager.instance.primaryFocus!.unfocus();
+          }
+        },
+        child:SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(height:  height * 0.048),
+              //サーチテキストフィールド
+              Container(
+                width: weight * 0.95,
+                height:  height * 0.07,
+                color: Colors.white,
+                margin: EdgeInsets.all(weight * 0.05),
+                child: TextFormField(
+                  autofocus: false,
+                  controller: searchController,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    hintText: '質問、ノートを検索',
+                    hintStyle: const TextStyle(fontSize: 17, color: Colors.black26),
+                    fillColor: Colors.grey[400],
+                    filled: true,
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: const BorderSide(
+                        color: Colors.red
+                      ),
                     ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(
-                      color: Colors.grey[400]!,
-                      width: 1.0,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide(
+                        color: Colors.grey[400]!,
+                        width: 1.0,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: height * 0.03),
-            const Divider(
-              height: 0,
-              thickness: 1,
-            ),
-            Container(
-              alignment: Alignment.topLeft,
-              margin: EdgeInsets.all(weight * 0.02),
-              child:  const Text("カテゴリー"),
-            ),
-            ListView.separated(
-                    shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (BuildContext context, int index){
-                        return ListTile(
-                          dense: true,
-                          leading: CircleAvatar(
-                            child: ClipOval(
-                              child: Image.asset(iconlist[index]),
+              SizedBox(height: height * 0.03),
+              const Divider(
+                height: 0,
+                thickness: 1,
+              ),
+              Container(
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.all(weight * 0.02),
+                child:  const Text("カテゴリー"),
+              ),
+              ListView.separated(
+                      shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (BuildContext context, int index){
+                          return ListTile(
+                            dense: true,
+                            leading: CircleAvatar(
+                              child: ClipOval(
+                                child: Image.asset(iconlist[index]),
+                              ),
+                              backgroundColor: Colors.white,
                             ),
-                            backgroundColor: Colors.white,
-                          ),
-                          title: Text(categorylist[index],
-                            style: const TextStyle(
-                              fontSize: 20
+                            title: Text(categorylist[index],
+                              style: const TextStyle(
+                                fontSize: 20
+                              ),
                             ),
-                          ),
-                          onTap: (){
-                            print( categorylist[index]);
-                          },
-                        );
-                      },
-                      separatorBuilder: (context, index){
-                        return Divider(
-                          height: height * 0.005,
-                          indent: weight * 0.17,
-                          endIndent: weight * 0.1,
-                          thickness: 1,
-                        );
-                      },
-                      itemCount: iconlist.length
-            ),
-          ]
+                            onTap: (){
+                              print( categorylist[index]);
+                            },
+                          );
+                        },
+                        separatorBuilder: (context, index){
+                          return Divider(
+                            height: height * 0.005,
+                            indent: weight * 0.17,
+                            endIndent: weight * 0.1,
+                            thickness: 1,
+                          );
+                        },
+                        itemCount: iconlist.length
+              ),
+            ]
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
