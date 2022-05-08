@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 //クラスインポート
 import 'package:qanvas/router/bottom_route.dart';
-import 'package:qanvas/screens/question_add_screen.dart';
+import 'package:qanvas/service/search/screens/question_add_screen.dart';
 
 final Router_Provider = Provider(
     (ref) => GoRouter(

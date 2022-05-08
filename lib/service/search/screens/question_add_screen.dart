@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:auto_size_text_field/auto_size_text_field.dart';
@@ -111,6 +110,7 @@ class QuestionAddScreen extends HookConsumerWidget{
                     clipBehavior: Clip.none,
                     children: <Widget>[
                       Container(
+                        decoration: BoxDecoration(color: Colors.white.withOpacity(0)),
                         margin: EdgeInsets.all(weight * 0.05),
                         child: AutoSizeTextField(
                           //テキスト入力判定

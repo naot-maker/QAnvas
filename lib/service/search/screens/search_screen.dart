@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_simple_treeview/flutter_simple_treeview.dart';
 
 //クラスインポート
-import 'package:qanvas/common/common_widget.dart';
+
 
 final searchstateprovider = StateProvider.autoDispose((ref){
   return TextEditingController(text: "");
@@ -110,36 +109,36 @@ class SearchScreen extends HookConsumerWidget{
                 child:  const Text("カテゴリー"),
               ),
               ListView.separated(
-                      shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (BuildContext context, int index){
-                          return ListTile(
-                            dense: true,
-                            leading: CircleAvatar(
-                              child: ClipOval(
-                                child: Image.asset(iconlist[index]),
-                              ),
-                              backgroundColor: Colors.white,
-                            ),
-                            title: Text(categorylist[index],
-                              style: const TextStyle(
-                                fontSize: 20
-                              ),
-                            ),
-                            onTap: (){
-                              print( categorylist[index]);
-                            },
-                          );
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index){
+                    return ListTile(
+                      dense: true,
+                      leading: CircleAvatar(
+                        child: ClipOval(
+                          child: Image.asset(iconlist[index]),
+                        ),
+                        backgroundColor: Colors.white,
+                      ),
+                      title: Text(categorylist[index],
+                        style: const TextStyle(
+                            fontSize: 20
+                        ),
+                      ),
+                      onTap: (){
+                        print( categorylist[index]);
                         },
-                        separatorBuilder: (context, index){
-                          return Divider(
-                            height: height * 0.005,
-                            indent: weight * 0.17,
-                            endIndent: weight * 0.1,
-                            thickness: 1,
-                          );
-                        },
-                        itemCount: iconlist.length
+                    );
+                  },
+                  separatorBuilder: (context, index){
+                    return Divider(
+                      height: height * 0.005,
+                      indent: weight * 0.17,
+                      endIndent: weight * 0.1,
+                      thickness: 1,
+                    );
+                  },
+                  itemCount: iconlist.length
               ),
             ]
           ),

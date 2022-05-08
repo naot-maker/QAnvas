@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 //クラスインポート
-import 'package:qanvas/screens/search_screen.dart';
-import 'package:qanvas/screens/chat_screen.dart';
-import 'package:qanvas/screens/notification_screen.dart';
-import 'package:qanvas/screens/note_screen.dart';
-
+import 'package:qanvas/service/search/screens/search_screen.dart';
+import 'package:qanvas/service/chat/screens/chat_screen.dart';
+import 'package:qanvas/service/notification/screens/notification_screen.dart';
+import 'package:qanvas/service/note/screens/note_screen.dart';
 
 final screenTypeProvider = StateProvider<ScreenType>((ref) => ScreenType.Search);
 
