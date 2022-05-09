@@ -67,6 +67,8 @@ dependencies:
 
   spring_button: ^2.0.0
 
+  flutter_tags: ^0.4.9+1
+
 flutter_native_splash:
   image: assets/images/QAnvas_splash2.png
   android: true
@@ -81,6 +83,7 @@ dev_dependencies:
   hive_generator: ^1.1.2
   build_runner:
   freezed: ^2.0.2
+  json_serializable: ^6.2.0
 
 
   # The "flutter_lints" package below contains a set of recommended lints to
