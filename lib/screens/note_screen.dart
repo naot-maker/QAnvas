@@ -11,6 +11,13 @@ class NoteScreen extends StatelessWidget{
       body: Center(
         child: Text("note"),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: (){
+            GoRouter.of(context).go('/note_add_screen');
+          },
+        label: const Text("ノート作成"),
+        backgroundColor: Colors.lightBlueAccent,
+      ),
     );
   }
 }
