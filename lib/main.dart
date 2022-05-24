@@ -1,31 +1,32 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter/services.dart';
+import 'package:gitclone/page/profile_page.dart';
+import 'package:gitclone/themes.dart';
+import 'package:gitclone/utils/user_preferences.dart';
 
-//クラスインポート
-import 'package:qanvas/router/router_provider.dart';
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
-void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
-  runApp(
-    const ProviderScope(
-        child: Myapp()
-    ),
-  );
+  runApp(MyApp());
 }
 
-class Myapp extends ConsumerWidget{
-  const Myapp({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  static final String title = 'User Profile';
+
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
-    final router = ref.watch(Router_Provider);
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
-    );
-  }
+  Widget build(BuildContext context) {
+    final user = UserPreferences.myUser;
 
+    return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: title,
+          home: ProfilePage(),
+        );
+  }
 }
+
